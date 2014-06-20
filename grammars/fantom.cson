@@ -1,3 +1,4 @@
+# TODO: make much more context-sensitive for pattern matching (class, method, slot, etc)
 scopeName: 'source.fantom'
 name: 'Fantom'
 fileTypes: ['fan']
@@ -58,6 +59,7 @@ repository: {
       {include: '#literal_number'}
       {include: '#literal_language_constant'}
       {include: '#literal_keywords'}
+      {include: '#literal_string'}
     ]
   }
 
@@ -195,4 +197,51 @@ repository: {
     ]
   }
 
+  literal_string: {
+    patterns: [
+      {
+        name: 'string.quoted.fantom'
+        begin: '"'
+        beginCaptures: {
+          0: {name: 'punctuation.definition.string.begin.fantom'}
+        }
+        end: '"'
+        endCaptures: {
+          0: {name: 'punctuation.definition.string.end.fantom'}
+        }
+        patterns: [
+          {include: '#escaped_unicode_char'}
+          {include: '#escaped_char'}
+          {include: '#interpolation'}
+        ]
+      }
+    ]
+  }
+
+  escaped_unicode_char: {
+    patterns: [
+      {
+        name: 'constant.character.unicode.fantom'
+        match: '\\\\u[0-9A-Fa-f]{4}'
+      }
+    ]
+  }
+
+  escaped_char: {
+    patterns: [
+      {
+        name: 'constant.character.escapes.fantom'
+        match: "\\\\[bfnrt\"'`$\\\\]"
+      }
+    ]
+  }
+
+  interpolation: {
+    patterns: [
+      {
+        name: 'string.interpolated.fantom'
+        match: '(?x)\\$({.*?}|([A-Za-z_][_\\w]*\\.?)+)'
+      }
+    ]
+  }
 }

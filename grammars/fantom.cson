@@ -57,6 +57,7 @@ repository: {
     patterns: [
       {include: '#literal_number'}
       {include: '#literal_language_constant'}
+      {include: '#literal_keywords'}
     ]
   }
 
@@ -91,6 +92,105 @@ repository: {
       {
         name: 'constant.language.null.fantom'
         match: '\\bnull\\b'
+      }
+    ]
+  }
+
+  literal_keywords: {
+    patterns: [
+      {
+        name: 'storage.modifier.fantom'
+        match: "\\b(abstract|const|final|internal|native|once|override|private|protected|public|readonly|static|virtual|volatile)\\b"
+      }
+      {
+        name: 'storage.modifier.global.fantom'
+        match: '\\busing\\b'
+      }
+      {
+        name: 'storage.type.fantom'
+        match: '\\b(class|mixin|enum|facet)\\b'
+      }
+      {
+        name: 'keyword.control.flow.fantom'
+        match: '\\b(return|break|continue)\\b'
+      }
+      {
+        name: 'keyword.control.try-catch.fantom'
+        match: '\\b(try|catch|finally|throw|assert)\\b'
+      }
+      {
+        name: 'keyword.control.loop.fantom'
+        match: '\\b(for|while|do|foreach)\\b'
+      }
+      {
+        name: 'keyword.control.switch.fantom'
+        match: '\\b(switch|case|default)\\b'
+      }
+      {
+        name: 'keyword.control.if-else.fantom'
+        match: '\\b(if|else)\\b'
+      }
+      {
+        name: 'keyword.operator.named.fantom'
+        match: '\\b(new|void|as)\\b'
+      }
+      {
+        match: '(===?|!==?|<=>?|>=|<|>|\\bis(not)?\\b)'
+        name: 'keyword.operator.comparison.fantom'
+      }
+      {
+        name: 'keyword.operator.assignment.arithmetic.fantom'
+        match: '([+*/%-]=)'
+      }
+      {
+        name: 'keyword.operator.assignment.fantom'
+        match: ':?='
+      }
+      {
+        name: 'keyword.operator.increment-decrement.fantom'
+        match: '\\-\\-|\\+\\+'
+      }
+      {
+        name: 'keyword.operator.arithmetic.fantom'
+        match: '\\-|\\+|\\*|\\/|%'
+      }
+      {
+        name: 'keyword.operator.logical.fantom'
+        match: '(!(?!=)|&&|\\|\\|)'
+      }
+      {
+        name: 'keyword.operator.elvis.fantom'
+        match: '\\?\\:'
+      }
+      {
+        name: 'keyword.operator.trap.fantom'
+        match: '\\->'
+      }
+      {
+        name: 'keyword.operator.safe-trap.fantom'
+        match: '\\?\\->'
+      }
+      {
+        name: 'keyword.operator.call.fantom'
+        match:'(?<=\\S)\\.(?=\\S)'
+      }
+      {
+        name: 'keyword.operator.safe-call.fantom'
+        match: '(?<=\\S)\\?\\.(?=\\S)'
+      }
+      {
+        # This range doesn't parse correctly [x..1] (treats .1 as number)
+        name: 'keyword.operator.range.fantom'
+        match: '\\.\\.<?'
+      }
+      {
+        # TODO: handle lookahead for start of identifier
+        name: 'keyword.operator.address-of.fantom'
+        match: '(?x)&'
+      }
+      {
+        name: 'punctuation.terminator.fantom'
+        match: ';'
       }
     ]
   }

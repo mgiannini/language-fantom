@@ -1,0 +1,98 @@
+scopeName: 'source.fantom'
+name: 'Fantom'
+fileTypes: ['fan']
+
+patterns: [
+  {include: '#comments'}
+  {include: '#support'}
+  {include: '#core'}
+]
+repository: {
+  comments: {
+    patterns: [
+      {include: '#line_comment'}
+      {include: '#fandoc'}
+      {include: '#block_comment'}
+    ]
+  }
+  line_comment: {
+    patterns: [
+      {
+        match: '(//).*$\\n?'
+        name: 'comment.line.double-slash.fantom'
+      }
+    ]
+  }
+  fandoc: {
+    patterns: [
+      {
+        match: '^\\s*\\*\\*.*\\n'
+        name: 'comment.block.documentation.fandoc.fantom'
+      }
+    ]
+  }
+  block_comment: {
+    patterns: [
+      {
+        name: 'comment.block.nested.fantom'
+        begin: '/\\*'
+        end: '\\*/'
+        patterns: [
+          {include: '#block_comment'}
+        ]
+      }
+    ]
+  }
+
+  support: {
+    patterns: [
+      {
+        name: 'support.type.builtin.fantom'
+        match: "\\b(Void|Bool|Int|Float|Decimal|Duration|Str|Uri|Type|Slot|Range|List|Map)\\b"
+      }
+    ]
+  }
+
+  core: {
+    patterns: [
+      {include: '#literal_number'}
+      {include: '#literal_language_constant'}
+    ]
+  }
+
+  literal_number: {
+    # TODO: come back and clean up these patterns
+    patterns: [
+      {
+        name: 'invalid.illegal.numeric.hex.fantom'
+        match: "(?i)(?:\\B[-+]\\b)0x_?[0-9a-f_]*\\.(\\B|\\b[0-9]+)",
+      }
+      {
+        name: 'constant.numeric.fantom'
+        match: "(?xi)\n  (?:\\B[-+])?\n  (?:\n    \\b0x[0-9a-f][_0-9a-f]*|                 # hex\n    (\n      \\B\\.[0-9]+|                           # e.g. .999\n      \\b[0-9][_0-9]*(\\.[0-9][_0-9]*[fd]?)?  # e.g. 999.999, 999.9 999\n    )(e[-+]?[0-9][_0-9]*)?                  # scientific notation\n    [fd]?                                   # f/d suffix (e.g. 999f)\n  )\n"
+      }
+      {
+        name: 'constant.numeric.char-literal.fantom'
+        match: "(?x)\n  \\'\\\\\n  (\n    u[0-9A-Fa-f]{4}|\n    [bfnrt\"'`$\\\\]\n  )\n  \\'\n"
+      }
+    ]
+  }
+
+  literal_language_constant: {
+    patterns: [
+      {
+        name: 'constant.language.boolean.true.fantom'
+        match: '\\btrue\\b'
+      }
+      {
+        name: 'constant.language.boolean.false.fantom'
+        match: '\\bfalse\\b'
+      }
+      {
+        name: 'constant.language.null.fantom'
+        match: '\\bnull\\b'
+      }
+    ]
+  }
+
+}

@@ -1,0 +1,14 @@
+{
+  "name": "language-fantom",
+  "main": "./lib/language-fantom",
+  "version": "0.0.0",
+  "description": "A short description of your package",
+  "activationEvents": ["language-fantom:toggle"],
+  "repository": "https://github.com/atom/language-fantom",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+  }
+}

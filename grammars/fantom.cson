@@ -49,7 +49,7 @@ repository: {
     patterns: [
       {
         name: 'support.type.builtin.fantom'
-        match: "\\b(Void|Bool|Int|Float|Decimal|Duration|Str|Uri|Type|Slot|Range|List|Map)\\b"
+        match: "\\b(Void|Bool|Int|Float|Decimal|Duration|Str|Uri|Type|Slot|Range|List|Map|This)\\b"
       }
     ]
   }

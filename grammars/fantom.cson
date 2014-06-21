@@ -61,6 +61,7 @@ repository: {
       {include: '#literal_keywords'}
       {include: '#literal_string'}
       {include: '#literal_uri'}
+      {include: '#literal_language_variable'}
     ]
   }
 
@@ -194,6 +195,23 @@ repository: {
       {
         name: 'punctuation.terminator.fantom'
         match: ';'
+      }
+    ]
+  }
+
+  literal_language_variable: {
+    patterns: [
+      {
+        name: 'variable.language.super.fantom'
+        match: '(?<!\\.)\\b(super)\\b'
+      }
+      {
+        name: 'variable.language.this.fantom'
+        match: '(?!\\.)\\b(this)\\b'
+      }
+      {
+        name: 'variable.language.it.fantom'
+        match: '(?!\\.)\\b(it)(?=\\.)'
       }
     ]
   }

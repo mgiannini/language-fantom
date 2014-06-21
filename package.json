@@ -1,14 +1,13 @@
 {
   "name": "language-fantom",
+  "description": "Fantom language support in Atom",
+  "version": "0.1.0",
+  "private": true,
   "main": "./lib/language-fantom",
-  "version": "0.0.0",
-  "description": "A short description of your package",
-  "activationEvents": ["language-fantom:toggle"],
-  "repository": "https://github.com/atom/language-fantom",
+  "repository": "https://github.com/mgiannini/language-fantom",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
   },
-  "dependencies": {
-  }
+  "dependencies": { }
 }

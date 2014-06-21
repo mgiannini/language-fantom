@@ -60,6 +60,7 @@ repository: {
       {include: '#literal_language_constant'}
       {include: '#literal_keywords'}
       {include: '#literal_string'}
+      {include: '#literal_uri'}
     ]
   }
 
@@ -200,7 +201,7 @@ repository: {
   literal_string: {
     patterns: [
       {
-        name: 'string.quoted.fantom'
+        name: 'string.quoted.double.fantom'
         begin: '"'
         beginCaptures: {
           0: {name: 'punctuation.definition.string.begin.fantom'}
@@ -208,6 +209,27 @@ repository: {
         end: '"'
         endCaptures: {
           0: {name: 'punctuation.definition.string.end.fantom'}
+        }
+        patterns: [
+          {include: '#escaped_unicode_char'}
+          {include: '#escaped_char'}
+          {include: '#interpolation'}
+        ]
+      }
+    ]
+  }
+
+  literal_uri: {
+    patterns: [
+      {
+        name: 'string.quoted.other.uri.fantom'
+        begin: '\\`'
+        beginCaptures: {
+          0: {name: 'punctuation.definition.uri.begin.fantom'}
+        }
+        end: '\\`'
+        endCaptures: {
+          0: {name: 'punctuation.definition.uri.end.fantom'}
         }
         patterns: [
           {include: '#escaped_unicode_char'}
@@ -239,8 +261,8 @@ repository: {
   interpolation: {
     patterns: [
       {
-        name: 'string.interpolated.fantom'
-        match: '(?x)\\$({.*?}|([A-Za-z_][_\\w]*\\.?)+)'
+        name: 'variable.other.interpolated.fantom'
+        match: '(?x)\\$(\\{.*?\\}|([A-Za-z_][_\\w]*\\.?)+)'
       }
     ]
   }

@@ -1,7 +1,7 @@
 {
   "name": "language-fantom",
   "description": "Fantom language support in Atom",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "main": "./lib/language-fantom",
   "repository": "https://github.com/mgiannini/language-fantom",

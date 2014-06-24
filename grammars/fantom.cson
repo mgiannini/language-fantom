@@ -66,19 +66,35 @@ repository: {
   }
 
   literal_number: {
-    # TODO: come back and clean up these patterns
+    # NOTE: the order of these patterns matters
     patterns: [
       {
         name: 'invalid.illegal.numeric.hex.fantom'
         match: "(?i)(?:\\B[-+]\\b)0x_?[0-9a-f_]*\\.(\\B|\\b[0-9]+)",
       }
       {
-        name: 'constant.numeric.fantom'
-        match: "(?xi)\n  (?:\\B[-+])?\n  (?:\n    \\b0x[0-9a-f][_0-9a-f]*|                 # hex\n    (\n      \\B\\.[0-9]+|                           # e.g. .999\n      \\b[0-9][_0-9]*(\\.[0-9][_0-9]*[fd]?)?  # e.g. 999.999, 999.9 999\n    )(e[-+]?[0-9][_0-9]*)?                  # scientific notation\n    [fd]?                                   # f/d suffix (e.g. 999f)\n  )\n"
+        name: 'constant.numeric.hex.fantom'
+        match: "\\b0x[0-9A-Fa-f][_0-9A-Fa-f]*"
       }
       {
-        name: 'constant.numeric.char-literal.fantom'
-        match: "(?x)\n  \\'\\\\\n  (\n    u[0-9A-Fa-f]{4}|\n    [bfnrt\"'`$\\\\]\n  )\n  \\'\n"
+        name: 'constant.other.duration.fantom'
+        match: "(?xi)(\\B\\.[0-9][0-9_]*|\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?)(e[-+]?[0-9][0-9_]*)?(ns|ms|sec|min|hr|day)"
+      }
+      {
+        name: 'constant.numeric.numeric.fantom'
+        match: "(?xi)(\\B\\.[0-9][0-9_]*|\\b[0-9][0-9_]*(\\.[0-9][0-9_]*)?)(e[-+]?[0-9][0-9_]*)?[fd]?"
+      }
+      {
+        name: 'constant.numeric.escape-unicode.fantom'
+        match: "\\'\\\\u[0-9A-Fa-f]{4}\\'"
+      }
+      {
+        name: 'constant.numeric.escape-char.fantom'
+        match: "\\'\\\\[bfnrt'\\\\]\\'"
+      }
+      {
+        name: 'constant.numeric.char.fantom'
+        match: "\\'.\\'"
       }
     ]
   }
